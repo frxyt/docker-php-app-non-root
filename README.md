@@ -1,7 +1,5 @@
 # Docker Image for packaging a PHP application (Non-Root Version), by [FEROX](https://ferox.yt)
 
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/frxyt/php-app-non-root.svg)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/frxyt/php-app-non-root.svg)
 ![Docker Pulls](https://img.shields.io/docker/pulls/frxyt/php-app-non-root.svg)
 ![GitHub issues](https://img.shields.io/github/issues/frxyt/docker-php-app-non-root.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/frxyt/docker-php-app-non-root.svg)
@@ -15,7 +13,16 @@ This image packages PHP with PHP-FPM & NGINX in a slim image so you can focus on
 
 ## Docker Hub Image
 
-**`frxyt/php-app-non-root`**
+**`frxyt/php-app-non-root`**:
+
+* Alpine variant:
+  * PHP 7.4: `frxyt/php-app-non-root:7.4-alpine`
+  * PHP 8.0: `frxyt/php-app-non-root:8.0-alpine`
+  * PHP 8.1: `frxyt/php-app-non-root:8.1-alpine`
+* Debian 11 (Bullseye) variant:
+  * PHP 7.4: `frxyt/php-app-non-root:7.4-bullseye`
+  * PHP 8.0: `frxyt/php-app-non-root:8.0-bullseye`
+  * PHP 8.1: `frxyt/php-app-non-root:8.1-bullseye`
 
 ## Usage
 
@@ -38,7 +45,7 @@ RUN yarn install
 RUN yarn encore production
 RUN rm -rf node_modules
 
-FROM frxyt/php-app-non-root:7.4 as app
+FROM frxyt/php-app-non-root:7.4-alpine as app
 COPY --from=build /app /app
 USER root
 RUN     echo -n "#!/bin/bash\nphp bin/console doctrine:migrations:migrate -n" > /usr/local/bin/frx-start.d/app \
@@ -57,7 +64,7 @@ USER www-data
 
 ## Build & Test
 
-* Alpine:
+* Alpine variant:
 
   * PHP 7.4:
   
@@ -80,7 +87,7 @@ USER www-data
     docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.1-alpine
     ```
 
-* Debian 11 (Bullseye):
+* Debian 11 (Bullseye) variant:
 
   * PHP 7.4:
   
