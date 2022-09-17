@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Copyright (c) 2022 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+# Copyright (c) 2022 Jérémy WALTHER <jeremy.walther@golflima.net>
+# See <https://github.com/frxyt/docker-php-app-non-root> for details.
+
+# Display MOTD
+if [[ -n "${FRX_MOTD}" ]]; then
+    if [[ "${FRX_MOTD}" == 'default' ]]; then
+        if [[ "${FRX_OS_VARIANT}" == 'alpine' ]]; then
+            FRX_MOTD="[$(</etc/frx_version)]\n[Alpine:$(</etc/alpine-release)] [PHP:${PHP_VERSION}] [NGINX:$(nginx -v 2>&1 | cut -d'/' -f2)] [$(whoami):$(id -u):$(id -g)]\n<https://github.com/frxyt/docker-php-app-non-root>"
+        else
+            FRX_MOTD="[$(</etc/frx_version)]\n[Debian:$(</etc/debian_version)] [PHP:${PHP_VERSION}] [NGINX:$(nginx -v 2>&1 | cut -d'/' -f2)] [$(whoami):$(id -u):$(id -g)]\n<https://github.com/frxyt/docker-php-app-non-root>"
+        fi
+    fi
+    echo -e "${FRX_MOTD}"
+fi
+
+# Execute customs scripts if needed
+for exe in $(find /usr/local/bin/frx-start.d -executable ! -type d | sort); do
+    echo "Executing: '${exe}' ..."
+	/bin/bash ${exe}
+done
+
+# Start supervisor
+/usr/bin/supervisord -c /etc/supervisord.conf

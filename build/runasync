@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Copyright (c) 2022 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+# Copyright (c) 2022 Jérémy WALTHER <jeremy.walther@golflima.net>
+# See <https://github.com/frxyt/docker-php-app-non-root> for details.
+
+# Execute customs scripts if needed
+for exe in $(find /usr/local/bin/frx-runasync.d -executable ! -type d | sort); do
+    echo "Executing: '${exe}' ..."
+	/bin/bash ${exe}
+done
+
+# Exit
+echo "Ready !"
+exit 0

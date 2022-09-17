@@ -1,0 +1,27 @@
+# docker-compose up --build
+# http://localhost:8080
+
+version: '3.8'
+   
+networks:
+  public:
+    name: public
+ 
+services:
+
+  app:
+    image: frxyt/php-app-non-root:tests
+    build:
+      context: ../
+      dockerfile: Dockerfile
+      args:
+        - FRX_OS_VARIANT=alpine
+        - FRX_PHP_VERSION=8.1
+    cap_drop:
+      - all
+    environment: 
+      - TZ=Europe/Paris
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app:ro
