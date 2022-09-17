@@ -2,7 +2,7 @@ name: Build Docker PHP 8.1 App Non-Root (Alpine)
 
 env:
   OS_VARIANT: alpine
-  PHP_VERSION: 8.1
+  PHP_VERSION: '8.1'
 
 on:
   push:

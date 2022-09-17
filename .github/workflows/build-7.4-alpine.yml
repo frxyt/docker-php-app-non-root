@@ -2,7 +2,7 @@ name: Build Docker PHP 7.4 App Non-Root (Alpine)
 
 env:
   OS_VARIANT: alpine
-  PHP_VERSION: 7.4
+  PHP_VERSION: '7.4'
 
 on:
   push:

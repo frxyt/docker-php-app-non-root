@@ -2,7 +2,7 @@ name: Build Docker PHP 7.4 App Non-Root (Debian 11)
 
 env:
   OS_VARIANT: bullseye
-  PHP_VERSION: 7.4
+  PHP_VERSION: '7.4'
 
 on:
   push:
