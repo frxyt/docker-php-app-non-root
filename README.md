@@ -19,10 +19,14 @@ This image packages PHP with PHP-FPM & NGINX in a slim image so you can focus on
   * PHP 7.4: `frxyt/php-app-non-root:7.4-alpine`
   * PHP 8.0: `frxyt/php-app-non-root:8.0-alpine`
   * PHP 8.1: `frxyt/php-app-non-root:8.1-alpine`
+  * PHP 8.2: `frxyt/php-app-non-root:8.2-alpine`
+  * PHP 8.3: `frxyt/php-app-non-root:8.3-alpine`
 * Debian 11 (Bullseye) variant:
   * PHP 7.4: `frxyt/php-app-non-root:7.4-bullseye`
   * PHP 8.0: `frxyt/php-app-non-root:8.0-bullseye`
   * PHP 8.1: `frxyt/php-app-non-root:8.1-bullseye`
+  * PHP 8.2: `frxyt/php-app-non-root:8.2-bullseye`
+  * PHP 8.3: `frxyt/php-app-non-root:8.3-bullseye`
 
 ## Usage
 
@@ -87,6 +91,20 @@ USER www-data
     docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.1-alpine
     ```
 
+  * PHP 8.2:
+  
+    ```sh
+    docker build -f Dockerfile --build-arg FRX_OS_VARIANT=alpine --build-arg FRX_PHP_VERSION=8.2 -t frxyt/php-app-non-root:8.2-alpine .
+    docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.2-alpine
+    ```
+
+  * PHP 8.3:
+  
+    ```sh
+    docker build -f Dockerfile --build-arg FRX_OS_VARIANT=alpine --build-arg FRX_PHP_VERSION=8.3 -t frxyt/php-app-non-root:8.3-alpine .
+    docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.3-alpine
+    ```
+
 * Debian 11 (Bullseye) variant:
 
   * PHP 7.4:
@@ -110,6 +128,20 @@ USER www-data
     docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.1-bullseye
     ```
 
+  * PHP 8.2:
+  
+    ```sh
+    docker build -f Dockerfile --build-arg FRX_OS_VARIANT=bullseye --build-arg FRX_PHP_VERSION=8.2 -t frxyt/php-app-non-root:8.2-bullseye .
+    docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.2-bullseye
+    ```
+
+  * PHP 8.3:
+  
+    ```sh
+    docker build -f Dockerfile --build-arg FRX_OS_VARIANT=bullseye --build-arg FRX_PHP_VERSION=8.3 -t frxyt/php-app-non-root:8.3-bullseye .
+    docker run --rm --cap-drop=all -p 8080:8080 -v $(pwd)/tests:/app:ro frxyt/php-app-non-root:8.3-bullseye
+    ```
+
 ## License
 
 This project and images are published under the [MIT License](LICENSE).
@@ -117,8 +149,8 @@ This project and images are published under the [MIT License](LICENSE).
 ```txt
 MIT License
 
-Copyright (c) 2022 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
-Copyright (c) 2022 Jérémy WALTHER <jeremy.walther@golflima.net>
+Copyright (c) 2022,2023,2024 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+Copyright (c) 2022,2023,2024 Jérémy WALTHER <jeremy.walther@golflima.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
